@@ -9,10 +9,8 @@ Télécharger le fichier, puis, via l'invite des commande, l'ouvrir et aller au 
 2) Une fois dans le dossier backend, installation des dépendances avec npm install
 3) En cas de vulnerabilités détéctées, exectuer "$ npm audit fix" sinon passer à l'étape suivante
 4) Lancez le server avec la commande nodemon server 
-5) Retourner dans le dossier Groupomania avec "$ cd .."
 
-
-#Front 
+#Front depuis un autre terminal
 
 1) Rendez-vous dans le dossier front avec "$ cd front"
 2) Installation des dépendances avec la commande npm install
