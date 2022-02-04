@@ -2,13 +2,18 @@ const models = require('../models');
 
 exports.likeCtrl = (req, res, next) => {
 
-    // if(!req.body.userId || !req.body.publicationId || !req.body.rate){
-    //     return res.status(401).json({message: "Tous les critères ne semblent pas remplis"})
-    // }
+    /// Pour Postman
 
-    // if(JSON.parse(req.body.rate) !== 1 & JSON.parse(req.body.rate) !== -1){
-    //     return res.status(401).json({message: "Bien essayé petit maliiiiiiiiiiiiiiin"})
-    //  }
+    if(!req.body.userId || !req.body.publicationId || !req.body.rate){
+        return res.status(401).json({message: "Tous les critères ne semblent pas remplis"})
+    }
+
+    if(JSON.parse(req.body.rate) !== 1 & JSON.parse(req.body.rate) !== -1){
+        return res.status(401).json({message: "Bien essayé petit maliiiiiiiiiiiiiiin"})
+     }
+
+
+     ////////
 
     // Seules les publications peuvent être likées, donc recherche la publi en question
     models.Publication.findOne({
