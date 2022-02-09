@@ -4,13 +4,13 @@ exports.likeCtrl = (req, res, next) => {
 
     /// Pour Postman
 
-    // if(!req.body.userId || !req.body.publicationId || !req.body.rate){
-    //     return res.status(401).json({message: "Tous les critères ne semblent pas remplis"})
-    // }
+    if(!req.body.userId || !req.body.publicationId || !req.body.rate){
+        return res.status(401).json({message: "Tous les critères ne semblent pas remplis"})
+    }
 
-    // if(JSON.parse(req.body.rate) !== 1 & JSON.parse(req.body.rate) !== -1){
-    //     return res.status(401).json({message: "Bien essayé petit maliiiiiiiiiiiiiiin"})
-    //  }
+    if(JSON.parse(req.body.rate) !== 1 & JSON.parse(req.body.rate) !== -1){
+        return res.status(401).json({message: "Bien essayé petit maliiiiiiiiiiiiiiin"})
+     }
 
 
      ////////

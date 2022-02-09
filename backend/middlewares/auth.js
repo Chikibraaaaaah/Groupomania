@@ -7,17 +7,17 @@ module.exports = (req, res, next) => {
 
     try{
         ///////// Test via Postman
-        // const token = req.headers.authorization.split(' ')[1]
-        // const decodedToken = jwt.verify(token,"(534y(5ç_èçuç_(uhghè$ù*^m^p^çà_i('-iàç21" )
-        // const userId = decodedToken.userId
-        // const frontId = JSON.parse(req.body.userId)
+        const token = req.headers.authorization.split(' ')[1]
+        const decodedToken = jwt.verify(token,"(534y(5ç_èçuç_(uhghè$ù*^m^p^çà_i('-iàç21" )
+        const userId = decodedToken.userId
+        const frontId = JSON.parse(req.body.userId)
 
         /// Test via le Front
-        const token = JSON.parse(req.headers.authorization)
-        const decodedToken = jwt.verify(token.token, "(534y(5ç_èçuç_(uhghè$ù*^m^p^çà_i('-iàç21")
-        const userId = decodedToken.userId
-        const frontId = req.body.userId
-        console.log(frontId)
+        // const token = JSON.parse(req.headers.authorization)
+        // const decodedToken = jwt.verify(token.token, "(534y(5ç_èçuç_(uhghè$ù*^m^p^çà_i('-iàç21")
+        // const userId = decodedToken.userId
+        // const frontId = req.body.userId
+        // console.log(frontId)
 
         if(frontId && frontId !== userId  ){
             throw 'Requête non authentifiée'

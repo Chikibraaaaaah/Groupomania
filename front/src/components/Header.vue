@@ -18,7 +18,6 @@
 
                   <v-toolbar-items>                          
                         <v-icon>mdi-account-search</v-icon>
-                        <label class="my-auto" v-if="breakPoint !== 'md'" for="test">Rechercher</label>
                         <v-text-field clearable name="test" class="col-3" v-model="search"></v-text-field>                                         
                     </v-toolbar-items>
                    
@@ -153,7 +152,7 @@ export default {
 .contien{
     max-height: 300px;
     overflow: auto;
-    background: rgb(221, 219, 219);
+    background: white;
 }
 
 .loader {
