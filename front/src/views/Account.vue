@@ -9,7 +9,7 @@
 
             <v-card class="mb-4">
 
-                <div class="d-sm-flex">
+                <div class="d-sm-flex mx-auto">
     
                     <div id="userProfile" class="col-sm-2">
                         <v-img v-if="user.imageUrl != null"   :src="user.imageUrl"></v-img>
@@ -67,8 +67,8 @@
                   
 
 
-                                <v-form ref="newPassword"   v-if="passwordEdit" class="mt-4">
-                                    <v-text-field label="Nouveau mot de passe" v-model="newPassword" type="password" clearable outlined :rules="passwordRules" shaped></v-text-field>
+                                <v-form ref="newPassword"   v-if="passwordEdit" class="mt-4 col-10 ">
+                                    <v-text-field label="Nouveau mot de passe" v-model="newPassword"  type="password" clearable outlined :rules="passwordRules" shaped></v-text-field>
                                     <v-text-field label="Confirmer le nouveau mot de passe" v-model="newPasswordConfirm" type="password" clearable outlined :rules="passwordRules" shaped></v-text-field>
                                     <v-btn @click="updatePassword" icon> <v-icon>mdi-check</v-icon></v-btn>
                                 </v-form>   

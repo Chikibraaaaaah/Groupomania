@@ -5,11 +5,11 @@ const fs = require('fs')
 exports.createOnePublication = (req, res, next) => {
 
     //////// Pour Test Front //
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     ///// Pour test Postman
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // On s'assure qu'il y a bien un contenu à envoyer
     if(req.body.publiContent == undefined  && req.body.imageUrl == undefined){
@@ -46,11 +46,11 @@ exports.updateYourPublication = (req, res, next) => {
     }
 
     // Via PostMan
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // Via Front
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     const newpubliContent = req.body.publiContent;
     const newImageUrl = req.file;
@@ -137,11 +137,11 @@ exports.updateYourPublication = (req, res, next) => {
 exports.deleteYourPublication = (req, res, next) => {
 
     // Via PostMan
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // Via Front
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     models.User.findOne({
         where: {

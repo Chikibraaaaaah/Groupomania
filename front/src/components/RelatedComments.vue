@@ -1,6 +1,6 @@
 <template>
   <v-col v-if="relatedComments.length > 0"  >
-      <h3 class="grey text-center" >Ils ont commenté la publication de {{ $route.params.userName }}</h3>
+
       <div class="text-left" id="relComments">
            <p v-for="comment in relatedComments" :key="comment.id" > <span > {{comment.User.userName}} a dit: {{ comment.commentContent }} </span><span  v-if="comment.userId == $store.state.actualUser.id  || $store.state.actualUser.isModerator == true">
             <v-btn icon @click="editComment(comment)"> <v-icon>mdi-pen</v-icon></v-btn>
@@ -23,7 +23,7 @@
       </div>
   </v-col>
 
-  <v-col v-else class="col-lg-6 mx-auto">
+  <v-col v-else class="col-md-5 mx-auto">
       <h4 class="text-center">Soyez le premier à commenter la publication de {{$route.params.userName }}</h4>
       <v-img contain src="../assets/noCommentYet.jpg" ></v-img>
   </v-col>

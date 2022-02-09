@@ -1,11 +1,11 @@
 <template>
-  <v-container class="mx-auto">
+  <v-container class="mx-auto " fluid >
     <div  v-if="isLogged" class="col-12" >
       <h2 class="text-center mb-4"> {{ titreHome }} </h2>
       <div class="d-lg-flex">
          <div class="col-lg-6 col-sm-6 col-md-8 mx-auto order-xs-first order-lg-last">
           <v-btn text @click="show = !show" elevation="5" class="col"> <v-icon>mdi-bell</v-icon> Retrouvez l'activité de vos amis</v-btn>
-          <Feed  v-if="showFeed"/>
+          <Feed  v-if="showFeed" />
         </div>
 
           <div class="publicationsPart  col-sm-6 col-md-8 col-lg-6 mx-auto">

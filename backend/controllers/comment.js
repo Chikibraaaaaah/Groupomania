@@ -4,11 +4,11 @@ const models = require('../models');
 exports.createAComment = (req, res, next) => {
 
     // Via PostMan
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // Via Front
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     models.Publication.findOne({
         where: {
@@ -80,11 +80,11 @@ exports.createAComment = (req, res, next) => {
 exports.updateAComment = (req, res, next) => {
 
     // Via PostMan
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // Via Front
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     if(req.body.commentContent == undefined || req.body.commentContent.length < 1){
         return res.status(400).json({message: "Votre nouveau commentaire est vide"})
@@ -135,11 +135,11 @@ exports.updateAComment = (req, res, next) => {
 exports.deleteYourComment = (req, res, next) => {
 
    // Via PostMan
-    const userId = req.body.userId
+    // const userId = req.body.userId
 
     // Via Front
-    // const token = req.headers.authorization
-    // const userId = JSON.parse(token).userId
+    const token = req.headers.authorization
+    const userId = JSON.parse(token).userId
 
     models.User.findOne({
         where: {

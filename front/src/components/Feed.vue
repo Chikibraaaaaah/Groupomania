@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="" >
     <h4 >Ce qu'il s'est passé dernièrerment</h4>
-      <v-list>
-        <v-list-item-content  :max-height="height" v-for="notification in notifications" :key="notification.id" id="brata">
+      <v-list :max-height="height" class="overflow-auto">
+        <v-list-item-content   v-for="notification in notifications" :key="notification.id" >
           <span > <router-link :to="{name:'Account', params: {userName: notification.User.userName}}"> {{ notification.User.userName }} </router-link>  a {{ notification.type }} la  <router-link :to="{name: 'PubliDetail', params: {id: notification.Publication.id}}"> publication de {{ notification.Publication.User.userName }}</router-link></span>
         </v-list-item-content>
       </v-list>
@@ -20,11 +20,11 @@ export default {
     },
     height () {
         switch (this.$vuetify.breakpoint.name) {
-          case 'xs': return 20
+          case 'xs': return 200
           case 'sm': return 400
           case 'md': return 500
-          case 'lg': return 600
-          case 'xl': return 800
+          case 'lg': return 1600
+          case 'xl': return 2000
           default: return 200
         }
     }

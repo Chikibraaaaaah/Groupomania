@@ -91,13 +91,15 @@ export default {
         .then( res => {
           const token = JSON.stringify(res.data) 
           this.$store.dispatch('setToken', token)
-
+         
           Auth.getUser(res.data.userId)
           .then( res => {
             this.$store.dispatch('setActualUser', res.data)
+            this.success = true
+            this.successMsg = "Bonjour " + res.data.userName 
             setTimeout(() => {
               this.successMsg = "Connexion en cours"
-            },300)
+            },1000)
             const router = this.$router
             setTimeout(function(){
               router.push({name:"Home"})
@@ -112,6 +114,8 @@ export default {
             this.errorMsg = error.response.data.message
         }
       })
+
+    
       
 
     },

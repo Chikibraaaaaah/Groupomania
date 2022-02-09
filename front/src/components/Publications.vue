@@ -13,7 +13,7 @@
 
           <router-link :to="{name: 'PubliDetail', params: {userName: publication.User.userName, id: publication.id}}">
               <figure >
-                   <v-img  v-if="publication.imageUrl == null" contain src="../assets/icon-left-font.png"  ></v-img>
+                   <v-img  class="col-10 mx-auto" v-if="publication.imageUrl == null" contain src="../assets/icon-left-font.svg"  ></v-img>
                     <v-img   v-else contain  :src="publication.imageUrl"></v-img>
                     <figcaption  >
                          <v-card-text  class="publiContent"> {{ publication.publiContent }} </v-card-text>

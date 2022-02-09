@@ -2,7 +2,7 @@
         <v-container v-if="isLogged"  >
             <div v-if="$store.state.publication !== null || undedfined" class=" d-lg-flex "> 
 
-                <v-card elevation="3" width="50%" class="col-lg-h-80" >               
+                <v-card elevation="3" class="col-12 col-md-6" :width="width">               
                     <router-link :to="{name: 'Account', params: {userName: publication.User.userName}}">
                         <div class="col d-flex userImgPubli">
                             <v-avatar  >
@@ -12,8 +12,8 @@
                             <v-card-title > {{ publication.User.userName }} </v-card-title>
                         </div>
                     </router-link>
-                    <div  class="col-lg-5 mx-auto" >
-                        <v-img v-if="publication.imageUrl == null" src="../assets/icon-above-font.png" contain ></v-img>
+                    <div  class="col-lg-6 mx-auto" >
+                        <v-img v-if="publication.imageUrl == null" src="../assets/icon-above-font.svg"  ></v-img>
                         <v-img v-else  :src="publication.imageUrl">  </v-img>
                     </div>                  
                     <v-file-input type="file" prepend-icon="mdi-camera" accept="image/png, image/jpeg, image/bmp, image/gif" ref="profile" hide-input class="input-group--focused uploadPubliPic"    enctype="multipart/form-data" v-if="allowed" @change="upload"> </v-file-input>
@@ -48,11 +48,9 @@
                 </v-card>
                 
                 <div class="col-lg-6 text-center "> 
-                    <h2> Découvrez les commentaires liés à la publication de {{ $route.params.userName }} </h2>
-                    <v-btn icon @click="showComments = !showComments">
-                        <v-icon>mdi-comment-multiple</v-icon>
-                    </v-btn>
-                     <RelatedComments @comment-deleted="alertDeleteComment" @comment-updated="alertUpdateComment" class="mt-6  " v-if="showComments"/>
+                          <h3 class="grey text-center" >Ils ont commenté la publication de {{ $route.params.userName }}</h3>
+                
+                     <RelatedComments @comment-deleted="alertDeleteComment" @comment-updated="alertUpdateComment" class="mt-6  " />
                 </div>
 
             </div>
@@ -60,7 +58,7 @@
             <div v-else>
                 {{$route.push({name:"Home"})}}
             </div>
-            <div class="row mt-2" >
+            <div class="row mt-4 col-md-6 mx-auto" >
                 <h3 class=" mx-auto">Commentez la publication de {{ publication.User.userName }}</h3>
                   <v-alert class="col-10 mx-auto" v-if="alert" shaped dense type="success" elevation=6 > {{ message }} </v-alert>
                 <NewComment @comment-created="commentCreated" class="col-10 mx-auto" />
@@ -99,8 +97,7 @@ export default {
             editComment: false,
             image: "",
             alert: false,
-            deletePubli: false,
-            showComments: false 
+            deletePubli: false
         }
     },
     computed: {
@@ -125,16 +122,16 @@ export default {
                 return false
             }
         } ,
-        // heigth(){
-        //      switch (this.$vuetify.breakpoint.name) {
-        //     case 'xs': return 200
-        //     case 'sm': return 300
-        //     case 'md': return 500
-        //     case 'lg': return 500
-        //     case 'xl': return 500
-        //     default: return 200
-        // }
-        // }
+        width(){
+             switch (this.$vuetify.breakpoint.name) {
+            case 'xs': return 600
+            case 'sm': return 600
+            case 'md': return 820
+            case 'lg': return 500
+            case 'xl': return 500
+            default: return 200
+        }
+        }
 
     },
     created(){ 

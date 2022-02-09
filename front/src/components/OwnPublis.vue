@@ -1,8 +1,8 @@
 <template>
     <div class="col-xl-5 mx-auto">
         <div  v-if="ownPublis.length > 0" >
-            <v-card v-for="publi in ownPublis" :key="publi.publiContent" class="mt-4"   >
-                <div class="red">
+            <v-card v-for="publi in ownPublis" :key="publi.publiContent" class="mt-4 h-70"   >
+                <div class="">
                     
                     
                     <v-card-title id="userOwnPubli">{{ publi.User.userName }}</v-card-title>
@@ -23,9 +23,9 @@
             </v-card>
       </div>
 
-      <div v-else class="col-xl-6 mx-auto">
+      <div v-else class="col-xl-6 mx-auto ">
         <h3 class="text-center"> {{$route.params.userName }} n'a pour le moment rien publié</h3>
-        <v-img src="../assets/empty.jpg" class="col-12"></v-img>
+        <v-img src="../assets/empty.jpg" ></v-img>
       </div>
 
     </div>

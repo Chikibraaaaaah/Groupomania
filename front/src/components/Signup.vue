@@ -1,18 +1,19 @@
 <template>
   <v-container>
 
-      <v-row justify-content="center" class="row">
-          <v-col  align-self="center" class="col-xl-6 mx-auto">
+      <v-row  >
+          <v-col   class="col-lg-8 mx-auto">
               <h2 class="text-center mb-6 "> {{ secondTitre }} </h2>
-                <v-form   ref="signup" class="row" id="authForm">
-                    <v-text-field label="Nom d'utilisateur" v-model="userName" class="col-xl-6" :rules="userNameRules"  autofocus clearable outlined shaped type="text" ></v-text-field>
-                    <v-text-field label="Adresse email" v-model="email" type="email"  class="col-xl-6" clearable outlined :rules="emailRules" shaped></v-text-field>
-                    <v-text-field label="Mot de passe" v-model="password" type="password"  class="col-6" clearable outlined :rules="passwordRules" shaped></v-text-field>
-                    <v-btn  class="mx-auto" @click.prevent="signup">S'Inscrire <v-icon>mdi-login</v-icon></v-btn>
+                <v-form  class="d-flex flex-column" ref="signup" id="authForm">
+                    <v-text-field label="Nom d'utilisateur" v-model="userName" class="col-xl-8 mx-auto "  :rules="userNameRules"  autofocus clearable outlined shaped type="text" ></v-text-field>
+                    <v-text-field label="Adresse email" v-model="email" type="email"  class="col-xl-8 mx-auto " clearable outlined :rules="emailRules" shaped></v-text-field>
+                    <v-text-field label="Mot de passe" v-model="password" type="password" class="col-xl-8 mx-auto "  clearable outlined :rules="passwordRules" shaped></v-text-field>
+                    <v-btn class=" mx-auto"  @click.prevent="signup">S'Inscrire <v-icon>mdi-login</v-icon></v-btn>
                 </v-form>
-             <v-row align-content="center">
+
+          
                  <v-alert prominent class="mx-auto mt-4"  type="warning" rounded elevation="8" dense v-if="alertError"  >La validation ne respecte pas les critères demandés</v-alert>     
-             </v-row>
+
 
           </v-col>
       </v-row>
