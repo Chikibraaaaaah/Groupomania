@@ -16,9 +16,13 @@
 
                 <div class="my-auto">
 
-                  <v-toolbar-items>                          
-                        <v-icon>mdi-account-search</v-icon>
-                        <v-text-field clearable name="test" class="col-3" v-model="search"></v-text-field>                                         
+                  <v-toolbar-items>  
+                       <v-icon>mdi-account-search</v-icon>
+                      <div class="">
+                         
+                            <v-text-field clearable name="test" class="col-3" v-model="search"></v-text-field>    
+                          </div>                        
+                                                             
                     </v-toolbar-items>
                    
                     <div class="contien" v-if="this.search">
@@ -78,7 +82,7 @@
 </template>
 
 <script>
-import Auth from '../Services/Auth'
+// import Auth from '../Services/Auth'
 export default {
     data(){
         return {
@@ -108,7 +112,7 @@ export default {
         }
       },
       getFilteredUser(){
-          return this.users.filter( user => {
+          return this.$store.state.users.filter( user => {
               return user.userName.toLowerCase().includes(this.search.toLowerCase())
           })
       }
@@ -116,21 +120,9 @@ export default {
     methods: {
         logout(){
             this.$store.dispatch('logout')
-        },
-        getUsers(){
-            Auth.getUsers()
-            .then( res =>  {
-        
-                this.users = res.data.rows
-                console.log(this.users)
-            
-            })
-            .catch( error => console.log( error ))
         }
-    },
-    mounted(){
-        this.getUsers()
     }
+    
 }
 </script>
 

@@ -301,11 +301,11 @@ export default {
         refresh(){
             Auth.getUser(this.$store.state.user.id)
             .then( res => {
-                // this.$store.dispatch('getUser', res.data)
-                // this.$store.dispatch('setActualUser', res.data)
-                console.log(res.data)
-                // const router = this.$router
-                // router.push({name: 'Account', params: {userName: this.$store.state.actualUser.userName}})
+                this.$store.dispatch('getUser', res.data)
+                this.$store.dispatch('setActualUser', res.data)
+      
+                const router = this.$router
+                router.push({name: 'Account', params: {userName: this.$store.state.actualUser.userName}})
             })
             .catch( error => console.log( error ))
         },

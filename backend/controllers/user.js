@@ -128,18 +128,22 @@ exports.getAllProfiles = (req, res, next) => {
 };
 
 exports.updateYourAccount = (req, res, next) => {
+
     const userName = req.body.userName;
 
     /// Test via le Front
-    const userId = JSON.parse(req.headers.authorization).userId;
-    console.log(userId)
+    // const userId = JSON.parse(req.headers.authorization).userId;
 
-    //// Test via Postman
-    // const userId = JSON.parse(req.body.userId)
+    // Test via Postman
+    const userId = JSON.parse(req.body.userId)
+
+    // Si rien n'est rensigné, on envoie une alerte
 
     if(!userName & !req.body.email & !req.body.password & !req.body.description & !req.file){
         return res.status(400).json({message: "Vous n'avez séléctionnez aucun champs à modifier" })
     }else if(req.body.isModerator){
+
+        // S'il tente de modifier ses droits, on l'interdit également
         return res.status(401).json({message: "Ce n'est pas à vous de définir cela"})
     }
 
@@ -154,6 +158,9 @@ exports.updateYourAccount = (req, res, next) => {
         if(!user){
             return res.status(404).json({message: "Ce id n'est associé à aucun compte" })
         }else{
+
+            // Modification du password
+
             if(req.body.password){
                 bcrypt.hash(req.body.password, 10)
                 .then( hash => {
@@ -169,6 +176,9 @@ exports.updateYourAccount = (req, res, next) => {
                 })
                 .catch( error => res.status(500).json({ error }))
             }else if(req.file) {
+
+                // Modification de l'image profile
+
                 if( user.imageUrl !== null){
                     const imageProfile = user.imageUrl.split('images/')[1]
                     fs.unlink(`images/${imageProfile}`, () => {
@@ -194,6 +204,9 @@ exports.updateYourAccount = (req, res, next) => {
                     .catch( error => res.status(500).json({ error }))
                 }
             }else if(req.body.email){
+
+                // Modification de l'email
+
                 models.User.findOne({
                     where: {
                         email: req.body.email
@@ -217,6 +230,9 @@ exports.updateYourAccount = (req, res, next) => {
                 })
                 .catch( error => res.status(500).json( error ))
             }else if(req.body.userName) {
+
+                // Modification du nom d'utilisateur
+
                 if(req.body.userName.length < 4){
                     return res.status(400).json({message: "Votre nom d'utilisateur doit contenir au moins 5 caractères"})
                 }
@@ -242,6 +258,22 @@ exports.updateYourAccount = (req, res, next) => {
                    } 
                 })
                 .catch( error => res.status(500).json( error ))
+            }else if (req.body.description){
+                if(req.body.description.length < 1){
+                    return res.status(500).json({message: "Votre description est vide"})
+                }else{
+                    models.User.update({
+                        description: req.body.description
+                    }, {
+                        where: {
+                            id: userId
+                        }
+                    })
+                    .then( () => {
+                        res.status(200).json({message: "Description mise à jour"})
+                    })
+                    .catch( error => res.status(500).json( error ))
+                }
             }
         }
     })
@@ -251,10 +283,10 @@ exports.updateYourAccount = (req, res, next) => {
 exports.deleteAcccount = (req, res, next) => {
 
     //// Test via le Front
-    const userId = JSON.parse(req.headers.authorization).userId
+    // const userId = JSON.parse(req.headers.authorization).userId
 
     /// Test via Postman
-    // const userId = req.body.userId
+    const userId = req.body.userId
 
     models.User.findOne({
         where: {
@@ -268,9 +300,9 @@ exports.deleteAcccount = (req, res, next) => {
                 where: {
                     id: userId
                 }
-               
             })
-            .then( () => res.status(200).json({message: "Compte supprmé avec succès, à bientôt " + user.userName}))
+            .then( () => 
+                res.status(200).json({message: "Compte supprmé avec succès, à bientôt " + user.userName}))
             .catch( error => res.status(501).json( error ))
         }else{
             const imageProfile = user.imageUrl.split('images/')[1]

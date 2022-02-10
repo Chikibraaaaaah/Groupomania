@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
         // const token = JSON.parse(req.headers.authorization)
         // const decodedToken = jwt.verify(token.token, "(534y(5ç_èçuç_(uhghè$ù*^m^p^çà_i('-iàç21")
         // const userId = decodedToken.userId
-        // const frontId = req.body.userId
-        // console.log(frontId)
+        // const frontId = token.userId
+
 
         if(frontId && frontId !== userId  ){
             throw 'Requête non authentifiée'
