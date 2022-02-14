@@ -9,6 +9,9 @@ exports.signup = (req, res, next) => {
     const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
+    const passwordRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$')
+
+
     // On vériifie que tous les champs requis soient remplis
     if(userName == null ||email == null || password == null){
         return res.status(400).json({message: "Tous les champs sont requis" })
@@ -34,7 +37,11 @@ exports.signup = (req, res, next) => {
             if(userNameUsed){
                 return res.status(400).json({message: "Ce nom d'utilisateur est déjà pris"})
             }
-                  // Pas de soucis, donc on crypte le password
+                  // Pas de soucis, si le mot de passe est conforme à la regex,  on crypte le password
+            if(!password.match(passwordRegex)){
+                return res.status(400).json({message: "Votre mot de passe doit contenir entre 8 et 20 caractères, 1 chiffre et une majuscule et un caractère spécial"})
+            }      
+
             bcrypt.hash(password, 10)
             .then( hash => {
                 const user = new models.User({
